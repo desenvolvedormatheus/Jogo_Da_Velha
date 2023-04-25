@@ -95,7 +95,7 @@ function estadoTabuleiro() {
             if (casa7.innerText != "" & casa8.innerText != "" & casa9.innerText != ""){
                 if (velha == true){
                     vencedor.style.display = "initial"
-                    vencedor.innerHTML = `Deu velha!`
+                    vencedor.innerHTML = "Deu velha!"
                 }
             }
         }
@@ -121,128 +121,110 @@ document.querySelector(".zerar").addEventListener("click", ()=>{
 })
 
 casa1.addEventListener("click", () =>{
-    if (casa1.innerText != "X"){
-        if (casa1.innerText != "O" )
+    if (casa1.innerText == ""){
         casa1.innerText = jogador
-    }
-    estadoTabuleiro()
-    if (jogador == "X"){
-        jogador = "O"
-    } else{
-        jogador = "X"
+        estadoTabuleiro()
+        if (jogador == "X"){
+            jogador = "O"
+        } else{
+            jogador = "X"
+        }
     }
     infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
-    Velha()
 })
 casa2.addEventListener("click", () =>{
-    if (casa2.innerText != "X"){
-        if (casa2.innerText != "O" )
+    if (casa2.innerText == ""){
         casa2.innerText = jogador
-    }
-    estadoTabuleiro()
-    if (jogador == "X"){
-        jogador = "O"
-    } else{
-        jogador = "X"
+        estadoTabuleiro()
+        if (jogador == "X"){
+            jogador = "O"
+        } else{
+            jogador = "X"
+        }
     }
     infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
-    Velha()
 })
 casa3.addEventListener("click", () =>{
-    if (casa3.innerText != "X"){
-        if (casa3.innerText != "O" )
+    if (casa3.innerText == ""){
         casa3.innerText = jogador
-    }
-    estadoTabuleiro()
-    if (jogador == "X"){
-        jogador = "O"
-    } else{
-        jogador = "X"
+        estadoTabuleiro()
+        if (jogador == "X"){
+            jogador = "O"
+        } else{
+            jogador = "X"
+        }
     }
     infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
-    Velha()
 })
 casa4.addEventListener("click", () =>{
-    if (casa4.innerText != "X"){
-        if (casa4.innerText != "O" )
+    if (casa4.innerText == ""){
         casa4.innerText = jogador
-    }
-    estadoTabuleiro()
-    if (jogador == "X"){
-        jogador = "O"
-    } else{
-        jogador = "X"
+        estadoTabuleiro()
+        if (jogador == "X"){
+            jogador = "O"
+        } else{
+            jogador = "X"
+        }
     }
     infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
-    Velha()
 })
 casa5.addEventListener("click", () =>{
-    if (casa5.innerText != "X"){
-        if (casa5.innerText != "O" )
+    if (casa5.innerText == ""){
         casa5.innerText = jogador
-    }
-    estadoTabuleiro()
-    if (jogador == "X"){
-        jogador = "O"
-    } else{
-        jogador = "X"
+        estadoTabuleiro()
+        if (jogador == "X"){
+            jogador = "O"
+        } else{
+            jogador = "X"
+        }
     }
     infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
-    Velha()
 })
 casa6.addEventListener("click", () =>{
-    if (casa6.innerText != "X"){
-        if (casa6.innerText != "O" )
+    if (casa6.innerText == ""){
         casa6.innerText = jogador
-    }
-    estadoTabuleiro()
-    if (jogador == "X"){
-        jogador = "O"
-    } else{
-        jogador = "X"
+        estadoTabuleiro()
+        if (jogador == "X"){
+            jogador = "O"
+        } else{
+            jogador = "X"
+        }
     }
     infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
-    Velha()
 })
 casa7.addEventListener("click", () =>{
-    if (casa7.innerText != "X"){
-        if (casa7.innerText != "O" )
+    if (casa7.innerText == ""){
         casa7.innerText = jogador
-    }
-    estadoTabuleiro()
-    if (jogador == "X"){
-        jogador = "O"
-    } else{
-        jogador = "X"
+        estadoTabuleiro()
+        if (jogador == "X"){
+            jogador = "O"
+        } else{
+            jogador = "X"
+        }
     }
     infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
-    Velha()
 })
 casa8.addEventListener("click", () =>{
-    if (casa8.innerText != "X"){
-        if (casa8.innerText != "O" )
+    if (casa8.innerText == ""){
         casa8.innerText = jogador
-    }
-    estadoTabuleiro()
-    if (jogador == "X"){
-        jogador = "O"
-    } else{
-        jogador = "X"
+        estadoTabuleiro()
+        if (jogador == "X"){
+            jogador = "O"
+        } else{
+            jogador = "X"
+        }
     }
     infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
-    Velha()
 })
 casa9.addEventListener("click", () =>{
-    if (casa9.innerText != "X"){
-        if (casa9.innerText != "O" )
+    if (casa9.innerText == ""){
         casa9.innerText = jogador
-    }
-    estadoTabuleiro()
-    if (jogador == "X"){
-        jogador = "O"
-    } else{
-        jogador = "X"
+        estadoTabuleiro()
+        if (jogador == "X"){
+            jogador = "O"
+        } else{
+            jogador = "X"
+        }
     }
     infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
-    Velha()
 })
