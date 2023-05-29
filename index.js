@@ -101,8 +101,8 @@ function estadoTabuleiro() {
         }
     }
 
-    pontosXhtml.innerHTML = `Jogador X: ${pontosX}`
-    pontosOhtml.innerHTML = `Jogador O: ${pontosO}`
+    pontosXhtml.innerHTML = `X = ${pontosX}`
+    pontosOhtml.innerHTML = `O = ${pontosO}`
 }
 
 document.querySelector(".limpar").addEventListener("click", () => {
@@ -116,8 +116,8 @@ document.querySelector(".limpar").addEventListener("click", () => {
 document.querySelector(".zerar").addEventListener("click", ()=>{
     pontosO = 0
     pontosX = 0
-    pontosXhtml.innerHTML = `Jogador X: ${pontosX}`
-    pontosOhtml.innerHTML = `Jogador O: ${pontosO}`
+    pontosXhtml.innerHTML = `X = ${pontosX}`
+    pontosOhtml.innerHTML = `O = ${pontosO}`
 })
 
 casa1.addEventListener("click", () =>{
@@ -126,8 +126,10 @@ casa1.addEventListener("click", () =>{
         estadoTabuleiro()
         if (jogador == "X"){
             jogador = "O"
+            casa1.style.color = "#000000"
         } else{
             jogador = "X"
+            casa1.style.color = "#ffffff"
         }
     }
     infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
@@ -138,8 +140,10 @@ casa2.addEventListener("click", () =>{
         estadoTabuleiro()
         if (jogador == "X"){
             jogador = "O"
+            casa2.style.color = "#000000"
         } else{
             jogador = "X"
+            casa2.style.color = "#ffffff"
         }
     }
     infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
@@ -150,8 +154,10 @@ casa3.addEventListener("click", () =>{
         estadoTabuleiro()
         if (jogador == "X"){
             jogador = "O"
+            casa3.style.color = "#000000"
         } else{
             jogador = "X"
+            casa3.style.color = "#ffffff"
         }
     }
     infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
@@ -162,8 +168,10 @@ casa4.addEventListener("click", () =>{
         estadoTabuleiro()
         if (jogador == "X"){
             jogador = "O"
+            casa4.style.color = "#000000"
         } else{
             jogador = "X"
+            casa4.style.color = "#ffffff"
         }
     }
     infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
@@ -174,8 +182,10 @@ casa5.addEventListener("click", () =>{
         estadoTabuleiro()
         if (jogador == "X"){
             jogador = "O"
+            casa5.style.color = "#000000"
         } else{
             jogador = "X"
+            casa5.style.color = "#ffffff"
         }
     }
     infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
@@ -186,8 +196,10 @@ casa6.addEventListener("click", () =>{
         estadoTabuleiro()
         if (jogador == "X"){
             jogador = "O"
+            casa6.style.color = "#000000"
         } else{
             jogador = "X"
+            casa6.style.color = "#ffffff"
         }
     }
     infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
@@ -198,8 +210,10 @@ casa7.addEventListener("click", () =>{
         estadoTabuleiro()
         if (jogador == "X"){
             jogador = "O"
+            casa7.style.color = "#000000"
         } else{
             jogador = "X"
+            casa7.style.color = "#ffffff"
         }
     }
     infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
@@ -210,8 +224,10 @@ casa8.addEventListener("click", () =>{
         estadoTabuleiro()
         if (jogador == "X"){
             jogador = "O"
+            casa8.style.color = "#000000"
         } else{
             jogador = "X"
+            casa8.style.color = "#ffffff"
         }
     }
     infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
@@ -222,8 +238,10 @@ casa9.addEventListener("click", () =>{
         estadoTabuleiro()
         if (jogador == "X"){
             jogador = "O"
+            casa9.style.color = "#000000"
         } else{
             jogador = "X"
+            casa9.style.color = "#ffffff"
         }
     }
     infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
