@@ -1,248 +1,89 @@
-let jogador = "X"
-let casa1 = document.querySelector(".item1")
-let casa2 = document.querySelector(".item2")
-let casa3 = document.querySelector(".item3")
-let casa4 = document.querySelector(".item4")
-let casa5 = document.querySelector(".item5")
-let casa6 = document.querySelector(".item6")
-let casa7 = document.querySelector(".item7")
-let casa8 = document.querySelector(".item8")
-let casa9 = document.querySelector(".item9")
-let infoJogadorAtual = document.querySelector(".jogadorAtual")
-let vencedor = document.querySelector(".vencedor")
-let velha = false
-let pontosX = 0
-let pontosO = 0
-let pontosXhtml = document.querySelector(".PX")
-let pontosOhtml = document.querySelector(".PO")
+const tabuleiro = document.querySelectorAll("#item")
+const vitoria = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6] ]
 
-function estadoTabuleiro() {
-    let tabuleiro = []
-    tabuleiro.push(casa1.innerText); tabuleiro.push(casa2.innerText); tabuleiro.push(casa3.innerText);
-    tabuleiro.push(casa4.innerText); tabuleiro.push(casa5.innerText); tabuleiro.push(casa6.innerText);
-    tabuleiro.push(casa7.innerText); tabuleiro.push(casa8.innerText); tabuleiro.push(casa9.innerText);
+function iniciar(){
+    let pontos_X = 0
+    let pontos_O = 0
+    for(let aux of tabuleiro){
+        aux.innerHTML = ""
+    }
+    document.querySelector(".jogadorAtual").innerHTML = `Jogador atual: X`
 
-    if (tabuleiro[0] == "X" & tabuleiro[1] == "X" & tabuleiro[2] == "X"){
-        vencedor.style.display = "initial"
-        vencedor.innerHTML = `Vencedor!<br>${jogador}`
-        pontosX += 1
-    } else if (tabuleiro[3] == "X" & tabuleiro[4] == "X" & tabuleiro[5] == "X"){
-        vencedor.style.display = "initial"
-        vencedor.innerHTML = `Vencedor!<br>${jogador}`
-        pontosX += 1
-    } else if (tabuleiro[6] == "X" & tabuleiro[7] == "X" & tabuleiro[8] == "X"){
-        vencedor.style.display = "initial"
-        vencedor.innerHTML = `Vencedor!<br>${jogador}`
-        pontosX += 1
-    } else if (tabuleiro[0] == "X" & tabuleiro[3] == "X" & tabuleiro[6] == "X"){
-        vencedor.style.display = "initial"
-        vencedor.innerHTML = `Vencedor!<br>${jogador}`
-        pontosX += 1
-    } else if (tabuleiro[1] == "X" & tabuleiro[4] == "X" & tabuleiro[7] == "X"){
-        vencedor.style.display = "initial"
-        vencedor.innerHTML = `Vencedor!<br>${jogador}`
-        pontosX += 1
-    } else if (tabuleiro[2] == "X" & tabuleiro[5] == "X" & tabuleiro[8] == "X"){
-        vencedor.style.display = "initial"
-        vencedor.innerHTML = `Vencedor!<br>${jogador}`
-        pontosX += 1
-    } else if (tabuleiro[0] == "X" & tabuleiro[4] == "X" & tabuleiro[8] == "X"){
-        vencedor.style.display = "initial"
-        vencedor.innerHTML = `Vencedor!<br>${jogador}`
-        pontosX += 1
-    } else if (tabuleiro[2] == "X" & tabuleiro[4] == "X" & tabuleiro[6] == "X"){
-        vencedor.style.display = "initial"
-        vencedor.innerHTML = `Vencedor!<br>${jogador}`
-        pontosX += 1
-    } else{ velha = true }
-    
-    if (tabuleiro[0] == "O" & tabuleiro[1] == "O" & tabuleiro[2] == "O"){
-        vencedor.innerHTML = `Vencedor!<br>${jogador}`
-        vencedor.style.display = "initial"
-        pontosO += 1
-    } else if (tabuleiro[3] == "O" & tabuleiro[4] == "O" & tabuleiro[5] == "O"){
-        vencedor.innerHTML = `Vencedor!<br>${jogador}`
-        vencedor.style.display = "initial"
-        pontosO += 1
-    } else if (tabuleiro[6] == "O" & tabuleiro[7] == "O" & tabuleiro[8] == "O"){
-        vencedor.innerHTML = `Vencedor!<br>${jogador}`
-        vencedor.style.display = "initial"
-        pontosO += 1
-    } else if (tabuleiro[0] == "O" & tabuleiro[3] == "O" & tabuleiro[6] == "O"){
-        vencedor.innerHTML = `Vencedor!<br>${jogador}`
-        vencedor.style.display = "initial"
-        pontosO += 1
-    } else if (tabuleiro[1] == "O" & tabuleiro[4] == "O" & tabuleiro[7] == "O"){
-        vencedor.innerHTML = `Vencedor!<br>${jogador}`
-        vencedor.style.display = "initial"
-        pontosO += 1
-    } else if (tabuleiro[2] == "O" & tabuleiro[5] == "O" & tabuleiro[8] == "O"){
-        vencedor.innerHTML = `Vencedor!<br>${jogador}`
-        vencedor.style.display = "initial"
-        pontosO += 1
-    } else if (tabuleiro[0] == "O" & tabuleiro[4] == "O" & tabuleiro[8] == "O"){
-        vencedor.innerHTML = `Vencedor!<br>${jogador}`
-        vencedor.style.display = "initial"
-        pontosO += 1
-    } else if (tabuleiro[2] == "O" & tabuleiro[4] == "O" & tabuleiro[6] == "O"){
-        vencedor.innerHTML = `Vencedor!<br>${jogador}`
-        vencedor.style.display = "initial"
-        pontosO += 1
-    } else{ velha = true }
+    let jogadorXis = true;
+    let jogador = "X"
 
-    if (casa1.innerText != "" & casa2.innerText != "" & casa3.innerText != ""){
-        if (casa4.innerText != "" & casa5.innerText != "" & casa6.innerText != ""){
-            if (casa7.innerText != "" & casa8.innerText != "" & casa9.innerText != ""){
-                if (velha == true){
-                    vencedor.style.display = "initial"
-                    vencedor.innerHTML = "Deu velha!"
-                }
+    function jogador_X(elemento) {
+        jogador = "X"
+        elemento.innerHTML = jogador
+        jogadorXis = false
+    }
+    function jogador_O(elemento) {
+        jogador = "O"
+        elemento.innerHTML = jogador
+        jogadorXis = true
+    }
+
+    function checarVitoria(jogadorAtual){
+        return vitoria.some(combinado =>{
+            return combinado.every(index =>{
+                return tabuleiro[index].innerText === jogadorAtual
+            })
+        })
+    }
+    function checarempate() {
+        return [... tabuleiro].every(item =>{
+            return item.innerHTML == "X" || item.innerHTML == "O"
+        })
+    }
+    function fim(empate) {
+        if(empate){
+            document.querySelector(".vencedor h2").innerText = `Deu velha!`
+        } else{
+            document.querySelector(".vencedor h2").innerText = `${jogador} Venceu!`
+            if (jogador === "X"){
+                pontos_X += 1
+                document.querySelector("#PX").innerHTML = `X = ${pontos_X}`
+            } else{
+                pontos_O += 1
+                document.querySelector("#PO").innerHTML = `O = ${pontos_O}`
             }
         }
+        document.querySelector(".vencedor").style.top = "0"
     }
 
-    pontosXhtml.innerHTML = `X = ${pontosX}`
-    pontosOhtml.innerHTML = `O = ${pontosO}`
+    function inicio() {
+        for(let aux of tabuleiro){
+            aux.innerHTML = ""
+            aux.addEventListener("click", () =>{
+                jogadorXis ? jogador_X(aux): jogador_O(aux);
+                if(jogador == "X"){
+                    document.querySelector(".jogadorAtual").innerHTML = `Jogador atual: O` 
+                } else {
+                    document.querySelector(".jogadorAtual").innerHTML = `Jogador atual: X` 
+                }
+                const isWin = checarVitoria(jogador)
+                const isDraw = checarempate()
+
+                if(isWin){
+                    fim(false)
+                } else if(isDraw){
+                    fim(true)
+                }
+            }, {once: true})
+        }
+    }
+    inicio()
 }
-
-document.querySelector(".limpar").addEventListener("click", () => {
-    casa1.innerText = ""; casa2.innerText = ""; casa3.innerText = "";
-    casa4.innerText = ""; casa5.innerText = ""; casa6.innerText = "";
-    casa7.innerText = ""; casa8.innerText = ""; casa9.innerText = "";
-
-    vencedor.style.display = "none"
+document.querySelector("#reiniciar").addEventListener("click", ()=>{
+    document.querySelector(".vencedor").style.top = "-100vh"
+    iniciar()
 })
 
-document.querySelector(".zerar").addEventListener("click", ()=>{
-    pontosO = 0
-    pontosX = 0
-    pontosXhtml.innerHTML = `X = ${pontosX}`
-    pontosOhtml.innerHTML = `O = ${pontosO}`
+document.querySelector("#zerar").addEventListener("click", ()=>{
+    pontos_X = 0; pontos_O = 0;
+    document.querySelector("#PX").innerHTML = `X = ${pontos_X}`
+    document.querySelector("#PO").innerHTML = `O = ${pontos_O}`
+    iniciar()
 })
 
-casa1.addEventListener("click", () =>{
-    if (casa1.innerText == ""){
-        casa1.innerText = jogador
-        estadoTabuleiro()
-        if (jogador == "X"){
-            jogador = "O"
-            casa1.style.color = "#000000"
-        } else{
-            jogador = "X"
-            casa1.style.color = "#ffffff"
-        }
-    }
-    infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
-})
-casa2.addEventListener("click", () =>{
-    if (casa2.innerText == ""){
-        casa2.innerText = jogador
-        estadoTabuleiro()
-        if (jogador == "X"){
-            jogador = "O"
-            casa2.style.color = "#000000"
-        } else{
-            jogador = "X"
-            casa2.style.color = "#ffffff"
-        }
-    }
-    infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
-})
-casa3.addEventListener("click", () =>{
-    if (casa3.innerText == ""){
-        casa3.innerText = jogador
-        estadoTabuleiro()
-        if (jogador == "X"){
-            jogador = "O"
-            casa3.style.color = "#000000"
-        } else{
-            jogador = "X"
-            casa3.style.color = "#ffffff"
-        }
-    }
-    infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
-})
-casa4.addEventListener("click", () =>{
-    if (casa4.innerText == ""){
-        casa4.innerText = jogador
-        estadoTabuleiro()
-        if (jogador == "X"){
-            jogador = "O"
-            casa4.style.color = "#000000"
-        } else{
-            jogador = "X"
-            casa4.style.color = "#ffffff"
-        }
-    }
-    infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
-})
-casa5.addEventListener("click", () =>{
-    if (casa5.innerText == ""){
-        casa5.innerText = jogador
-        estadoTabuleiro()
-        if (jogador == "X"){
-            jogador = "O"
-            casa5.style.color = "#000000"
-        } else{
-            jogador = "X"
-            casa5.style.color = "#ffffff"
-        }
-    }
-    infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
-})
-casa6.addEventListener("click", () =>{
-    if (casa6.innerText == ""){
-        casa6.innerText = jogador
-        estadoTabuleiro()
-        if (jogador == "X"){
-            jogador = "O"
-            casa6.style.color = "#000000"
-        } else{
-            jogador = "X"
-            casa6.style.color = "#ffffff"
-        }
-    }
-    infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
-})
-casa7.addEventListener("click", () =>{
-    if (casa7.innerText == ""){
-        casa7.innerText = jogador
-        estadoTabuleiro()
-        if (jogador == "X"){
-            jogador = "O"
-            casa7.style.color = "#000000"
-        } else{
-            jogador = "X"
-            casa7.style.color = "#ffffff"
-        }
-    }
-    infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
-})
-casa8.addEventListener("click", () =>{
-    if (casa8.innerText == ""){
-        casa8.innerText = jogador
-        estadoTabuleiro()
-        if (jogador == "X"){
-            jogador = "O"
-            casa8.style.color = "#000000"
-        } else{
-            jogador = "X"
-            casa8.style.color = "#ffffff"
-        }
-    }
-    infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
-})
-casa9.addEventListener("click", () =>{
-    if (casa9.innerText == ""){
-        casa9.innerText = jogador
-        estadoTabuleiro()
-        if (jogador == "X"){
-            jogador = "O"
-            casa9.style.color = "#000000"
-        } else{
-            jogador = "X"
-            casa9.style.color = "#ffffff"
-        }
-    }
-    infoJogadorAtual.innerText = `Jogador atual: ${jogador}`
-})
+iniciar()
