@@ -11,6 +11,9 @@
 body{
     height: 100Vh;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
     position: relative;
     background-image: url(fundo.jfif);
@@ -65,7 +68,6 @@ h1{
     padding: 7px 0;
 }
 .caixa{
-    margin: auto;
     display: grid;
     grid-template-columns: 4.5rem 4.5rem 4.5rem;
     grid-template-rows: 4.5rem 4.5rem 4.5rem;
@@ -105,4 +107,13 @@ button{
 }
 button:hover{
     background: #ffffff94;
+}
+@media only screen and (max-width: 600px) {
+    .score{
+        position: initial;
+        top: 100px;
+        display: flex;
+        gap: 20px;
+        margin-bottom: 100px;
+    }
 }
