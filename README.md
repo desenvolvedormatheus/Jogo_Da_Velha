@@ -14,7 +14,7 @@ Este projeto é uma implementação do clássico jogo da velha, é jogado em um 
 - Reinicie o jogo a qualquer momento.
 - Contagem de pontos.
 
-## como jogar
+## como iniciar o projeto
 
 1. Clone o repositório e abra o arquivo index.html:
 
