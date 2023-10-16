@@ -1,0 +1,16 @@
+.manutencao{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(31, 0, 82, 0.459);
+    left: 0;
+    top: 0;
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: red;
+    font-weight: bold;
+    backdrop-filter: blur(4px);
+}
