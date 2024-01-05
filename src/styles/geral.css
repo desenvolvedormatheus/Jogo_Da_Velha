@@ -16,7 +16,7 @@ body{
     align-items: center;
     overflow: hidden;
     position: relative;
-    background-image: url(fundo.jfif);
+    background-image: url(../imgs/fundo.jfif);
     background-position: left;
     background-size: contain;
 }
