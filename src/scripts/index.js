@@ -1,109 +1,101 @@
-const tabuleiro = document.querySelectorAll("#item")
-let jogador = "X"
-
-function criarEventosClick(){
-    for(let _i = 0; _i < tabuleiro.length; _i++){
-        tabuleiro[_i].addEventListener('click', () =>{
-            tabuleiro[_i].innerHTML = jogador
-            trocarJogador(jogador)
-        })
-    }
+const domTabuleiro = document.querySelectorAll("#item");
+const domjogadorAtual = document.querySelector("#jogadorAtual");
+const domZerar = document.querySelector("#zerar");
+const domPX = document.querySelector("#PX");
+const domPO = document.querySelector("#PO");
+let selecionados = [];
+let jogador = "X";
+let vitorias = {
+    "X": 0,
+    "O": 0,
 }
 
-function trocarJogador(jogador){
-    if (jogador == "X"){
-        jogador = "O"
-    } else if(jogador == "O"){
-        jogador = "X"
-    }
-}
+const vitoria = [ 
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6] 
+];
 
 function iniciar(){
+    domPX.innerHTML = `X = ${vitorias.X}`;
+    domPO.innerHTML = `O = ${vitorias.O}`;
+    jogador = "X";
+    selecionados = [];
+    domjogadorAtual.innerHTML = `Jogador atual: ${jogador}`;
+    resetarEventosClick()
     criarEventosClick()
+}; iniciar();
 
-
+function criarEventosClick() {
+    domTabuleiro.forEach(criarEvento);
 }
-iniciar()
 
-// const vitoria = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6] ]
-// let pontos_X = 0
-// let pontos_O = 0
-// let jogadorXis;
-// let jogador;
+function resetarEventosClick() {
+    domTabuleiro.forEach(resetarEvento);
+}
 
-// function iniciar(){
-//     for(let aux of tabuleiro){
-//         aux.innerHTML = ""
-//     }
-//     document.querySelector(".jogadorAtual").innerHTML = `Jogador atual: X`
-//     jogadorXis = true;
-//     jogador = "X"
-    
-//     for(let aux of tabuleiro){
-//         aux.innerHTML = ""
-//         aux.addEventListener("click", () =>{
-//             jogadorXis ? jogador_X(aux): jogador_O(aux);
-//             if(jogador == "X"){
-//                 document.querySelector(".jogadorAtual").innerHTML = `Jogador atual: O` 
-//             } else {
-//                 document.querySelector(".jogadorAtual").innerHTML = `Jogador atual: X` 
-//             }
-//             const isWin = checarVitoria(jogador)
-//             const isDraw = checarempate()
+function criarEvento(item){
+    item.innerHTML = "";
+    item.addEventListener("click", click);
+};
 
-//             if(isWin){
-//                 fim(false)
-//             } else if(isDraw){
-//                 fim(true)
-//             }
-//         }, {once: true})
-//     }
-// }
-// iniciar()
-// document.querySelector("#reiniciar").addEventListener("click", ()=>{
-//     document.querySelector(".vencedor").style.top = "-100vh"
-//     iniciar()
-// })
-// document.querySelector("#zerar").addEventListener("click", ()=>{
-//     pontos_X = 0; pontos_O = 0;
-//     document.querySelector("#PX").innerHTML = `X = ${pontos_X}`
-//     document.querySelector("#PO").innerHTML = `O = ${pontos_O}`
-//     iniciar()
-// })
-// function fim(empate) {
-//     if(empate){
-//         document.querySelector(".vencedor h2").innerText = `Deu velha!`
-//     } else{
-//         document.querySelector(".vencedor h2").innerText = `${jogador} Venceu!`
-//         if (jogador === "X"){
-//             pontos_X += 1
-//             document.querySelector("#PX").innerHTML = `X = ${pontos_X}`
-//         } else{
-//             pontos_O += 1
-//             document.querySelector("#PO").innerHTML = `O = ${pontos_O}`
-//         }
-//     }
-//     document.querySelector(".vencedor").style.top = "0"
-// }
-// function checarVitoria(jogadorAtual){
-//     return vitoria.some(combinado =>{
-//         return combinado.every(index =>{
-//             return tabuleiro[index].innerText === jogadorAtual
-//         })
-//     })
-// }
-// function checarempate() {
-//     return [... tabuleiro].every(item =>{
-//         return item.innerHTML == "X" || item.innerHTML == "O"
-//     })
-// }
-// function jogador_X(elemento) {
-//     jogador = "X"
-//     elemento.innerHTML = jogador
-//     jogadorXis = false
-// }
-// function jogador_O(elemento) {
-//     jogador = "O"
-//     elemento.innerHTML = jogador
-//     jogadorXis = true
-// }
+function resetarEvento(item) {
+    item.removeEventListener("click", click);
+    item.innerHTML = "";
+}
+
+function click(e) {
+    const index = e.target.getAttribute("data-i");
+    e.target.innerHTML = jogador;
+    e.target.removeEventListener("click", click)
+    selecionados[index] = jogador;
+
+    setTimeout(() => {
+        checarVitoria();
+    }, 500);
+
+    jogador = jogador === "X" ? "O" : "X";
+    domjogadorAtual.innerHTML = `Jogador atual: ${jogador}`;
+}
+
+function checarVitoria(){
+    let ultimoJogador = jogador === "X" ? "O" : "X";
+
+    const items = selecionados
+    .map((item, i) => [item, i])
+    .filter((item) => item[0] === ultimoJogador)
+    .map((item) => item[1]);
+
+    for (pos of vitoria) {
+        if (pos.every((item) => items.includes(item))) {
+            alert(`O Jogador ${ultimoJogador} ganhou`);
+
+            if(ultimoJogador === "X"){ vitorias.X += 1 }
+            else if (ultimoJogador === "O"){ vitorias.O += 1 }
+            else{ alert("Erro [J.E] contate o administrador do sistema!") }
+
+            iniciar();
+            return;
+        }
+    }
+
+    if (selecionados.filter((item)=> item).length === 9) {
+        alert("Empate!");
+        iniciar();
+        return;
+    }
+}
+
+domZerar.addEventListener("click", ()=>{
+    vitorias = {
+        "X": 0,
+        "O": 0
+    }
+    domPX.innerHTML = `X = ${vitorias.X}`;
+    domPO.innerHTML = `O = ${vitorias.O}`;
+})
